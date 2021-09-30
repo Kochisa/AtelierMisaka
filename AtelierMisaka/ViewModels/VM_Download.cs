@@ -1,4 +1,4 @@
-﻿using AtelierMisaka.Commands;
+using AtelierMisaka.Commands;
 using AtelierMisaka.Models;
 using System;
 using System.Collections.Generic;
@@ -459,7 +459,7 @@ namespace AtelierMisaka.ViewModels
                         {
                             BaseItem bi = (BaseItem)args[1];
                             {
-                                string sp = Path.Combine(_savePath, _tempAN, $"{bi.CreateDate.ToString("yyyyMM\\\\dd_HHmm")}_${bi.Fee}_{bi.Title}");
+                                string sp = Path.Combine(_savePath, _tempAN, $"{bi.CreateDate.ToString("yyyy-MM-dd-HH")}_{bi.Title}_{bi.Fee}");
                                 try
                                 {
                                     Directory.CreateDirectory(sp);
@@ -521,7 +521,7 @@ namespace AtelierMisaka.ViewModels
                     case SiteType.Fantia:
                         {
                             FantiaItem fi = (FantiaItem)args[1];
-                            string sp = Path.Combine(_savePath, _tempAN, $"{fi.CreateDate.ToString("yyyyMM\\\\dd_HHmm")}_{fi.Title}");
+                            string sp = Path.Combine(_savePath, _tempAN, $"{fi.CreateDate.ToString("yyyy-MM-dd-HH")}_{fi.Title}");
                             try
                             {
                                 Directory.CreateDirectory(sp);
@@ -574,7 +574,7 @@ namespace AtelierMisaka.ViewModels
                     default:
                         {
                             BaseItem bi = (BaseItem)args[1];
-                            string sp = Path.Combine(_savePath, _tempAN, $"{bi.CreateDate.ToString("yyyyMM\\\\dd_HHmm")}_{bi.Title}");
+                            string sp = Path.Combine(_savePath, _tempAN, $"{bi.CreateDate.ToString("yyyy-MM-dd-HH")}_{bi.Title}");
                             try
                             {
                                 Directory.CreateDirectory(sp);
@@ -627,7 +627,7 @@ namespace AtelierMisaka.ViewModels
                 DownloadItem di = null;
                 //foreach (FantiaItem fi in fis)
                 {
-                    string sp = Path.Combine(_savePath, GlobalData.VM_MA.Artist.AName, $"{fi.CreateDate.ToString("yyyyMM\\\\dd_HHmm")}_{fi.Title}");
+                    string sp = Path.Combine(_savePath, GlobalData.VM_MA.Artist.AName, $"{fi.CreateDate.ToString("yyyy-MM-dd-HH")}_{fi.Title}");
                     try
                     {
                         Directory.CreateDirectory(sp);
@@ -668,7 +668,7 @@ namespace AtelierMisaka.ViewModels
                         }
                         if (!GlobalData.DLLogs.HasLog(fi.ContentUrls[i]))
                         {
-                            var nsp = $"{sp}\\{fi.PTitles[i]}";
+                            var nsp = $"{sp}\\{fi.CreateDate.ToString("yyyy-MM-dd-HH")}_{fi.Title}-{fi.PTitles[i]}";
                             if (!Directory.Exists(nsp))
                             {
                                 Directory.CreateDirectory(nsp);
@@ -717,7 +717,7 @@ namespace AtelierMisaka.ViewModels
                                 return;
                             }
                         }
-                        File.WriteAllLines(Path.Combine(sp, "Comment.html"), fi.Comments);
+                        File.WriteAllLines(Path.Combine(sp, "Comment.txt"), fi.Comments);
                     }
                 }
             });
