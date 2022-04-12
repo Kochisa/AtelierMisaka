@@ -57,8 +57,7 @@ namespace AtelierMisaka.Views
                                 {
                                     continue;
                                 }
-                                string sp = Path.Combine(VM_DD.SavePath, GlobalData.VM_MA.Artist.AName, $"{bi.CreateDate.ToString("yyyyMM\\\\dd_HHmm")}_${bi.Fee}_{bi.Title}");
-                                try
+                                string sp = Path.Combine(VM_DD.SavePath, GlobalData.VM_MA.Artist.AName, $"{bi.CreateDate.ToString("yyyy-MM-dd-HH-mm-ss")}_${bi.Title}_{bi.Fee}");                                try
                                 {
                                     Directory.CreateDirectory(sp);
                                 }
@@ -126,7 +125,7 @@ namespace AtelierMisaka.Views
                                 {
                                     try
                                     {
-                                        var fp = Path.Combine(sp, "Comment.html");
+                                        var fp = Path.Combine(sp, "Comment.txt");
                                         if (File.Exists(fp))
                                         {
                                             var cms = File.ReadAllLines(fp);
@@ -135,7 +134,7 @@ namespace AtelierMisaka.Views
                                                 continue;
                                             }
                                         }
-                                        File.WriteAllLines(Path.Combine(sp, "Comment.html"), bi.Comments);
+                                        File.WriteAllLines(Path.Combine(sp, "Comment.txt"), bi.Comments);
                                         bi.Comments.ForEach(x =>
                                         {
                                             var ma = GlobalRegex.Regex_Url.Match(x);
@@ -214,7 +213,7 @@ namespace AtelierMisaka.Views
                                 }
                                 if (fi.Comments.Count > 0)
                                 {
-                                    var fp = Path.Combine(sp, "Comment.html");
+                                    var fp = Path.Combine(sp, "Comment.txt");
                                     if (File.Exists(fp))
                                     {
                                         var cms = File.ReadAllLines(fp);
@@ -223,7 +222,7 @@ namespace AtelierMisaka.Views
                                             continue;
                                         }
                                     }
-                                    File.WriteAllLines(Path.Combine(sp, "Comment.html"), fi.Comments);
+                                    File.WriteAllLines(Path.Combine(sp, "Comment.txt"), fi.Comments);
                                 }
                             }
                             /**/
@@ -234,8 +233,7 @@ namespace AtelierMisaka.Views
                             foreach (var bi in _baseItems)
                             {
                                 //string sp = $"{VM_DD.SavePath}\\{GlobalData.VM_MA.Artist.AName}\\{bi.CreateDate.ToString("yyyyMM\\\\dd_HHmm")}_{bi.Title}";
-                                string sp = Path.Combine(VM_DD.SavePath, GlobalData.VM_MA.Artist.AName, $"{bi.CreateDate.ToString("yyyyMM\\\\dd_HHmm")}_{bi.Title}");
-                                try
+                                string sp = Path.Combine(VM_DD.SavePath, GlobalData.VM_MA.Artist.AName, $"{bi.CreateDate.ToString("yyyy-MM-dd-HH-mm-ss")}_{bi.Title}");                                try
                                 {
                                     Directory.CreateDirectory(sp);
                                 }
@@ -269,7 +267,7 @@ namespace AtelierMisaka.Views
                                 {
                                     try
                                     {
-                                        var fp = Path.Combine(sp, "Comment.html");
+                                        var fp = Path.Combine(sp, "Comment.txt");
                                         if (File.Exists(fp))
                                         {
                                             var cms = File.ReadAllLines(fp);
@@ -278,7 +276,7 @@ namespace AtelierMisaka.Views
                                                 continue;
                                             }
                                         }
-                                        File.WriteAllLines(Path.Combine(sp, "Comment.html"), bi.Comments);
+                                        File.WriteAllLines(Path.Combine(sp, "Comment.txt"), bi.Comments);
                                         bi.Comments.ForEach(x =>
                                         {
                                             var ma = GlobalRegex.Regex_Url.Match(x);
